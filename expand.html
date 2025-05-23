@@ -1,0 +1,52 @@
+<html>
+<header>
+<style>
+.expand-container {
+  width: 200px;
+  border: 1px solid #ccc;
+}
+
+.expand-header {
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.expand-arrow {
+  width: 10px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-right: 10px;
+}
+
+.expanded-content {
+  display: none;
+  padding: 10px;
+}
+
+</style>
+<script>
+function toggleExpansion() {
+  var content = document.querySelector('.expanded-content');
+  content.style.display = (content.style.display === 'none') ? 'block' : 'none';
+}
+
+
+</script>
+</header>
+<div class="expand-container">
+  <div class="expand-header" onclick="toggleExpansion()">
+    <h3>Expand</h3>
+
+     <span class="expand-arrow"></span>
+  </div>
+  <div class="expanded-content">
+    <p>This is the expanded content.</p>
+  </div>
+</div>
+
+
+</html>
