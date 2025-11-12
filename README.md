@@ -41,12 +41,11 @@ Solving problems and making things better.
 
 ## About
 
-This project aims to provide a solution for [briefly describe the problem your project solves]. It is designed for [mention your target audience] who need [explain the need or use case].
+This project aims to provide a sample solution for election system in Kenya. It is designed for mostly youth who shy way from the long queues to perform the civic right to votes the representatives mostly Presidents fellow countries have adopted this .
 
-Built using JavaScript and Node.js, the application leverages [mention key technologies or libraries used]. The architecture is based on [describe the architecture, e.g., modular design, microservices].
+Built using JavaScript, MYSQL, and PHP, the application leverages  i.
 
-The unique selling point of this project is [highlight what makes your project stand out]. It offers [mention key benefits or advantages over alternatives].
-
+The unique selling point of this project is the secure login in system that every user encounter each time the want to vote. 
 <br>
 
 ## ✨ Features
