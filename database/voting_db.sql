@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 12:53 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Generation Time: Nov 22, 2022 at 06:08 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,8 +38,7 @@ CREATE TABLE `category_list` (
 
 INSERT INTO `category_list` (`id`, `category`) VALUES
 (1, 'President'),
-(3, 'Vice Presindent'),
-(4, 'Officer');
+(3, 'Deputy president');
 
 -- --------------------------------------------------------
 
@@ -52,19 +51,23 @@ CREATE TABLE `users` (
   `name` varchar(200) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 2 COMMENT '1+admin , 2 = users'
+  `type` tinyint(1) NOT NULL DEFAULT 2 COMMENT '1+admin , 2 = users',
+  `Image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
-(1, 'Administrator', 'admin', 'admin123', 1),
-(2, 'John Smith', 'jsmith', 'admin123', 1),
-(3, 'Voter 2', 'voter2', 'voter2', 2),
-(4, 'Voter 1', 'voter1', 'voter1', 2),
-(5, 'angel jude suarez', 'jude', '123', 2);
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`, `Image`) VALUES
+(1, 'Administrator', 'admin', 'admin123', 1, ''),
+(2, 'John Smith', 'jsmith', 'admin123', 1, ''),
+(3, 'Voter 2', 'voter2', 'voter2', 2, ''),
+(4, 'Mai', 'Mai', 'Mai', 2, ''),
+(5, 'angel jude suarez', 'jude', '123', 2, ''),
+(6, 'Mai moona', 'Mona', 'Mona', 1, ''),
+(7, 'Elvis', 'Elv', '1234', 2, ''),
+(8, 'khan', 'khan', '12345', 2, '');
 
 -- --------------------------------------------------------
 
@@ -99,7 +102,9 @@ INSERT INTO `votes` (`id`, `voting_id`, `category_id`, `voting_opt_id`, `user_id
 (12, 1, 4, 11, 4),
 (13, 1, 1, 1, 5),
 (14, 1, 3, 5, 5),
-(15, 1, 4, 6, 5);
+(15, 1, 4, 6, 5),
+(16, 4, 1, 15, 7),
+(17, 4, 3, 18, 7);
 
 -- --------------------------------------------------------
 
@@ -141,7 +146,7 @@ CREATE TABLE `voting_list` (
 --
 
 INSERT INTO `voting_list` (`id`, `title`, `description`, `is_default`) VALUES
-(4, 'SSG Election', 'For SSG election', 1);
+(4, 'Mkenya Election', 'For Kenyan election', 1);
 
 -- --------------------------------------------------------
 
@@ -154,29 +159,31 @@ CREATE TABLE `voting_opt` (
   `voting_id` int(30) NOT NULL,
   `category_id` int(30) NOT NULL,
   `image_path` text NOT NULL,
-  `opt_txt` text NOT NULL
+  `opt_txt` text NOT NULL,
+  `party` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `voting_opt`
 --
 
-INSERT INTO `voting_opt` (`id`, `voting_id`, `category_id`, `image_path`, `opt_txt`) VALUES
-(1, 1, 1, '1600398180_no-image-available.png', 'James Smith'),
-(3, 1, 1, '1600415460_avatar2.png', 'James Wilson'),
-(5, 1, 3, '1600415520_avatar.jpg', 'George Walker'),
-(6, 1, 4, '1600400340_no-image-available.png', 'Cadidate 1'),
-(7, 1, 4, '1600400340_no-image-available.png', 'Cadidate 2'),
-(8, 1, 4, '1600400340_no-image-available.png', 'Cadidate 3'),
-(9, 1, 4, '1600400520_no-image-available.png', 'Cadidate  4'),
-(10, 1, 4, '1600400640_no-image-available.png', 'Cadidate 5'),
-(11, 1, 4, '1600400400_no-image-available.png', 'Cadidate 6'),
-(12, 1, 3, '1600415520_no-image-available.png', 'Claire Blake'),
-(13, 4, 1, '1614206040_IMG20210207174817[1].jpg', 'Adrian Mercurio'),
-(14, 4, 1, '1614206100_jude.jpg', 'Angel Jude Suarez'),
-(15, 4, 3, '1614206220_IMG20210223174532[1].jpg', 'Adones Evangelista'),
-(16, 4, 3, '1614206340_IMG20210210175225[1].jpg', 'Saxon Ong'),
-(17, 4, 3, '1614206400_IMG20210219143530[1].jpg', 'Prince Ly Cesar');
+INSERT INTO `voting_opt` (`id`, `voting_id`, `category_id`, `image_path`, `opt_txt`, `party`) VALUES
+(1, 1, 1, '1600398180_no-image-available.png', 'James Smith', ''),
+(3, 1, 1, '1600415460_avatar2.png', 'James Wilson', ''),
+(5, 1, 3, '1600415520_avatar.jpg', 'George Walker', ''),
+(6, 1, 4, '1600400340_no-image-available.png', 'Cadidate 1', ''),
+(7, 1, 4, '1600400340_no-image-available.png', 'Cadidate 2', ''),
+(8, 1, 4, '1600400340_no-image-available.png', 'Cadidate 3', ''),
+(9, 1, 4, '1600400520_no-image-available.png', 'Cadidate  4', ''),
+(10, 1, 4, '1600400640_no-image-available.png', 'Cadidate 5', ''),
+(12, 4, 3, 'Karua.png', 'Karua Martha', 'Azimio-One Kenya'),
+(13, 4, 1, '1614206040_IMG20220730174817[1].jpg', 'Odinga Raila', 'Azimio-One Kenya'),
+(14, 4, 1, '1614206100.jpg', 'Ruto Wiliam', 'UDA'),
+(15, 4, 1, '1614206400_IMG20220730143530[1] (2).jpg', 'Wajakoya George', 'Root party'),
+(16, 4, 1, 'Wahiga.jpg', 'Wahiga David', 'Agano party'),
+(17, 4, 3, 'Gachagua.png', 'Gachagua Rigathi', 'UDA'),
+(18, 4, 3, 'Wamae.png', 'Justina Wamaye', 'Root party'),
+(20, 4, 3, 'RUTH WAMAE.png', 'Ruth Wamae', 'Agano ');
 
 --
 -- Indexes for dumped tables
@@ -232,13 +239,13 @@ ALTER TABLE `category_list`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `voting_cat_settings`
@@ -256,7 +263,7 @@ ALTER TABLE `voting_list`
 -- AUTO_INCREMENT for table `voting_opt`
 --
 ALTER TABLE `voting_opt`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
